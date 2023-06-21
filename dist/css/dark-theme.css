@@ -2,7 +2,7 @@
 
 :root {
     /* Should make it easier to change colors in the future */
-    --text: #e4e4e4;
+    --text: #cfcfcf ;
     --background: #1b1b1b;
 
     --button-hover: black;
@@ -122,4 +122,18 @@ label:not(.btn) {
 
 input.select2-input {
     color: black;
+}
+.select2-chosen, .select2-results, .select2-drop-mask, .select2-drop {
+ background-color: #232a30;
+color: #d1d6c9;
+}
+.select2-container .select2-choice .select2-arrow {
+color:#232a30;
+background-color: #232a30;
+background-image: none;
+}
+.select2-focusser, .select2-offscreen { 
+color:#232a30;
+background-color: #232a30;
+background-image: none;
 }

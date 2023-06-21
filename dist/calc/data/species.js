@@ -9793,6 +9793,7 @@ var SV_PATCH = {
     types: ['Fire', 'Water'],
     bs: {hp: 90, at: 97, df: 114, sa: 100, sd: 83, sp: 65},
     weightkg: 135,
+    abilities: { 0: 'Zygod' }
 }, 
 
 'Revarantis': {
