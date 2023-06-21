@@ -9790,277 +9790,332 @@ var SV_PATCH = {
 
 // FE Data Starts
 'Volquag': {
-types: ['Fire', 'Water'],
- bs: {hp: 90, at: 97, df: 114, sa: 100, sd: 83, sp: 65},
+    types: ['Fire', 'Water'],
+    bs: {hp: 90, at: 97, df: 114, sa: 100, sd: 83, sp: 65},
+    weightkg: 135,
 }, 
 
 'Revarantis': {
-types: ['Steel', 'Grass'],
- bs: {hp: 75, at: 122, df: 90, sa: 75, sd: 80, sp: 67},
+    types: ['Steel', 'Grass'],
+    bs: {hp: 75, at: 122, df: 90, sa: 75, sd: 80, sp: 67},
+    weightkg: 69.3,
 }, 
 
 'Rotoghold': {
-types: ['Ghost', 'Steel'],
- bs: {hp: 70, at: 55, df: 87, sa: 115, sd: 85, sp: 93},
+    types: ['Ghost', 'Steel'],
+    bs: {hp: 70, at: 55, df: 87, sa: 115, sd: 85, sp: 93},
+    weightkg: 15.2,
 }, 
 
 'Guguzzparce': {
-types: ['Dark', 'Normal'],
- bs: {hp: 179, at: 101, df: 67, sa: 97, sd: 67, sp: 53},
+    types: ['Dark', 'Normal'],
+    bs: {hp: 179, at: 101, df: 67, sa: 97, sd: 67, sp: 53},
+    weightkg: 463.6,
 }, 
 
 'Toedieleki': {
-types: ['Electric', 'Ground'],
- bs: {hp: 80, at: 85, df: 60, sa: 100, sd: 85, sp: 155},
+    types: ['Electric', 'Ground'],
+    bs: {hp: 80, at: 85, df: 60, sa: 100, sd: 85, sp: 155},
+    weightkg: 101.5,
 }, 
 
 'Arbolosion-Hisui': {
-types: ['Grass', 'Fire'],
- bs: {hp: 90, at: 76, df: 84, sa: 122, sd: 102, sp: 67},
+    types: ['Grass', 'Fire'],
+    bs: {hp: 90, at: 76, df: 84, sa: 122, sd: 102, sp: 67},
+    weightkg: 63.9,
 }, 
 
 'Zarubok': {
-types: ['Dark', 'Poison'],
- bs: {hp: 82, at: 114, df: 87, sa: 67, sd: 87, sp: 105},
+    types: ['Dark', 'Poison'],
+    bs: {hp: 82, at: 114, df: 87, sa: 67, sd: 87, sp: 105},
+    weightkg: 67.5,
 }, 
 
 'Iron Meta': {
-types: ['Steel', 'Flying'],
- bs: {hp: 90, at: 110, df: 110, sa: 110, sd: 90, sp: 90},
+    types: ['Steel', 'Flying'],
+    bs: {hp: 90, at: 110, df: 110, sa: 110, sd: 90, sp: 90},
+    weightkg: 330.5,
 }, 
 
 'Iron Meta-Mega': {
-types: ['Steel', 'Flying'],
- bs: {hp: 90, at: 120, df: 130, sa: 120, sd: 110, sp: 130},
+    types: ['Steel', 'Flying'],
+    bs: {hp: 90, at: 120, df: 130, sa: 120, sd: 110, sp: 130},
+    weightkg: 723.4,
 }, 
 
 'Deciperior-Hisui': {
-types: ['Fighting', 'Ground'],
- bs: {hp: 105, at: 130, df: 105, sa: 75, sd: 75, sp: 50},
+    types: ['Fighting', 'Ground'],
+    bs: {hp: 105, at: 130, df: 105, sa: 75, sd: 75, sp: 50},
+    weightkg: 160,
 }, 
 
 'Slither King': {
-types: ['Bug', 'Steel'],
- bs: {hp: 79, at: 107, df: 85, sa: 83, sd: 97, sp: 79},
+    types: ['Bug', 'Steel'],
+    bs: {hp: 79, at: 107, df: 85, sa: 83, sd: 97, sp: 79},
+    weightkg: 47.5,
 }, 
 
 'Gargamise': {
-types: ['Rock', 'Grass'],
- bs: {hp: 85, at: 115, df: 115, sa: 65, sd: 90, sp: 40},
+    types: ['Rock', 'Grass'],
+    bs: {hp: 85, at: 115, df: 115, sa: 65, sd: 90, sp: 40},
+    weightkg: 225,
 }, 
 
 'Drampiclus': {
-types: ['Dragon', 'Psychic'],
- bs: {hp: 105, at: 62, df: 80, sa: 130, sd: 90, sp: 33},
+    types: ['Dragon', 'Psychic'],
+    bs: {hp: 105, at: 62, df: 80, sa: 130, sd: 90, sp: 33},
+    weightkg: 102.6,
 }, 
 
 'Muktaria-Alola': {
-types: ['Poison', 'Dragon'],
- bs: {hp: 90, at: 95, df: 85, sa: 70, sd: 105, sp: 65},
+    types: ['Poison', 'Dragon'],
+    bs: {hp: 90, at: 95, df: 85, sa: 70, sd: 105, sp: 65},
+    weightkg: 36.3,
 }, 
 
 'Muktaria-Alola-Mega': {
-types: ['Poison', 'Fairy'],
- bs: {hp: 90, at: 135, df: 105, sa: 110, sd: 105, sp: 65},
+    types: ['Poison', 'Fairy'],
+    bs: {hp: 90, at: 135, df: 105, sa: 110, sd: 105, sp: 65},
+    weightkg: 36.3,
 }, 
 
 'Iron Pins': {
-types: ['Electric', 'Psychic'],
- bs: {hp: 70, at: 116, df: 94, sa: 80, sd: 100, sp: 70},
+    types: ['Electric', 'Psychic'],
+    bs: {hp: 70, at: 116, df: 94, sa: 80, sd: 100, sp: 70},
+    weightkg: 63,
 }, 
 
 'Roaring Sal': {
-types: ['Fire', 'Dark'],
- bs: {hp: 90, at: 110, df: 65, sa: 85, sd: 80, sp: 120},
+    types: ['Fire', 'Dark'],
+    bs: {hp: 90, at: 110, df: 65, sa: 85, sd: 80, sp: 120},
+    weightkg: 201.1,
 }, 
 
 'Sol Valiant': {
-types: ['Dark', 'Fairy'],
- bs: {hp: 70, at: 130, df: 80, sa: 100, sd: 60, sp: 100},
+    types: ['Dark', 'Fairy'],
+    bs: {hp: 70, at: 130, df: 80, sa: 100, sd: 60, sp: 100},
+    weightkg: 41,
 }, 
 
 'Sol Valiant-Mega': {
-types: ['Dark', 'Fairy'],
- bs: {hp: 70, at: 150, df: 80, sa: 140, sd: 60, sp: 140},
+    types: ['Dark', 'Fairy'],
+    bs: {hp: 70, at: 150, df: 80, sa: 140, sd: 60, sp: 140},
+    weightkg: 43,
 }, 
 
 'Golisoros-Paldea-Blaze': {
-types: ['Water', 'Fighting'],
- bs: {hp: 79, at: 125, df: 125, sa: 45, sd: 85, sp: 70},
+    types: ['Water', 'Fighting'],
+    bs: {hp: 79, at: 125, df: 125, sa: 45, sd: 85, sp: 70},
+    weightkg: 98.2,
 }, 
 
 'Brambleswine': {
-types: ['Ice', 'Grass'],
- bs: {hp: 82, at: 123, df: 75, sa: 75, sd: 65, sp: 104},
+    types: ['Ice', 'Grass'],
+    bs: {hp: 82, at: 123, df: 75, sa: 75, sd: 65, sp: 104},
+    weightkg: 148.5,
 }, 
 
 'Meowscorio-Sensu': {
-types: ['Ghost', 'Dark'],
- bs: {hp: 75, at: 90, df: 70, sa: 109, sd: 70, sp: 108},
+    types: ['Ghost', 'Dark'],
+    bs: {hp: 75, at: 90, df: 70, sa: 109, sd: 70, sp: 108},
+    weightkg: 17.3,
 }, 
 
 'Whimsy Sands': {
-types: ['Fairy', 'Ground'],
- bs: {hp: 75, at: 75, df: 91, sa: 109, sd: 81, sp: 109},
+    types: ['Fairy', 'Ground'],
+    bs: {hp: 75, at: 75, df: 91, sa: 109, sd: 81, sp: 109},
+    weightkg: 33.3,
 }, 
 
 'Relishadow': {
-types: ['Rock', 'Ghost'],
- bs: {hp: 95, at: 116, df: 105, sa: 67, sd: 77, sp: 101},
+    types: ['Rock', 'Ghost'],
+    bs: {hp: 95, at: 116, df: 105, sa: 67, sd: 77, sp: 101},
+    weightkg: 22.8,
 }, 
 
 'Relishadow-Zenith': {
-types: ['Rock', 'Ghost'],
- bs: {hp: 95, at: 116, df: 105, sa: 67, sd: 77, sp: 101},
+    types: ['Rock', 'Ghost'],
+    bs: {hp: 95, at: 116, df: 105, sa: 67, sd: 77, sp: 101},
+    weightkg: 22.8,
 }, 
 
 'Lashiram': {
-types: ['Steel', 'Fire'],
- bs: {hp: 95, at: 110, df: 120, sa: 100, sd: 85, sp: 60},
+    types: ['Steel', 'Fire'],
+    bs: {hp: 95, at: 110, df: 120, sa: 100, sd: 85, sp: 60},
+    weightkg: 225,
 }, 
 
 'Garpyuku': {
-types: ['Water', 'Ground'],
- bs: {hp: 81, at: 100, df: 114, sa: 55, sd: 107, sp: 53},
+    types: ['Water', 'Ground'],
+    bs: {hp: 81, at: 100, df: 114, sa: 55, sd: 107, sp: 53},
+    weightkg: 48.1,
 }, 
 
 'Garpyuku-Mega': {
-types: ['Water', 'Ground'],
- bs: {hp: 81, at: 140, df: 134, sa: 95, sd: 117, sp: 43},
+    types: ['Water', 'Ground'],
+    bs: {hp: 81, at: 140, df: 134, sa: 95, sd: 117, sp: 43},
+    weightkg: 48.1,
 }, 
 
 'Yveltox': {
-types: ['Flying', 'Poison'],
- bs: {hp: 93, at: 90, df: 87, sa: 90, sd: 94, sp: 91},
+    types: ['Flying', 'Poison'],
+    bs: {hp: 93, at: 90, df: 87, sa: 90, sd: 94, sp: 91},
+    weightkg: 117.3,
 }, 
 
 'Iron Mimic': {
-types: ['Rock', 'Fairy'],
- bs: {hp: 78, at: 114, df: 96, sa: 60, sd: 102, sp: 90},
+    types: ['Rock', 'Fairy'],
+    bs: {hp: 78, at: 114, df: 96, sa: 60, sd: 102, sp: 90},
+    weightkg: 151.9,
 }, 
 
 'Iron Mimic-Busted': {
-types: ['Rock', 'Fairy'],
- bs: {hp: 78, at: 114, df: 96, sa: 60, sd: 102, sp: 90},
+    types: ['Rock', 'Fairy'],
+    bs: {hp: 78, at: 114, df: 96, sa: 60, sd: 102, sp: 90},
+    weightkg: 151.9,
 }, 
 
 'Iron Dirge': {
-types: ['Fire', 'Ground'],
- bs: {hp: 98, at: 96, df: 110, sa: 96, sd: 74, sp: 86},
+    types: ['Fire', 'Ground'],
+    bs: {hp: 98, at: 96, df: 110, sa: 96, sd: 74, sp: 86},
+    weightkg: 283.3,
 }, 
 
 'Iron Tornado': {
-types: ['Fighting', 'Flying'],
- bs: {hp: 118, at: 120, df: 100, sa: 80, sd: 80, sp: 92},
+    types: ['Fighting', 'Flying'],
+    bs: {hp: 118, at: 120, df: 100, sa: 80, sd: 80, sp: 92},
+    weightkg: 221.9,
 }, 
 
 'Deliraidon': {
-types: ['Dragon', 'Flying'],
- bs: {hp: 72, at: 85, df: 72, sa: 100, sd: 80, sp: 106},
+    types: ['Dragon', 'Flying'],
+    bs: {hp: 72, at: 85, df: 72, sa: 100, sd: 80, sp: 106},
+    weightkg: 128,
 }, 
 
 'Stargrowth': {
-types: ['Grass', 'Water'],
- bs: {hp: 90, at: 90, df: 105, sa: 105, sd: 70, sp: 85},
+    types: ['Grass', 'Water'],
+    bs: {hp: 90, at: 90, df: 105, sa: 105, sd: 70, sp: 85},
+    weightkg: 104.3,
 }, 
 
 'Floatzera': {
-types: ['Electric', 'Water'],
- bs: {hp: 90, at: 115, df: 65, sa: 101, sd: 65, sp: 130},
+    types: ['Electric', 'Water'],
+    bs: {hp: 90, at: 115, df: 65, sa: 101, sd: 65, sp: 130},
+    weightkg: 39,
 }, 
 
 'Crygargonal': {
-types: ['Poison', 'Ice'],
- bs: {hp: 80, at: 57, df: 55, sa: 122, sd: 105, sp: 107},
+    types: ['Poison', 'Ice'],
+    bs: {hp: 80, at: 57, df: 55, sa: 122, sd: 105, sp: 107},
+    weightkg: 94.3,
 }, 
 
 'Crygargonal-Mega': {
-types: ['Poison', 'Ice'],
- bs: {hp: 80, at: 57, df: 75, sa: 162, sd: 125, sp: 127},
+    types: ['Poison', 'Ice'],
+    bs: {hp: 80, at: 57, df: 75, sa: 162, sd: 125, sp: 127},
+    weightkg: 94.3,
 }, 
 
 'Wopple': {
-types: ['Grass', 'Dragon'],
- bs: {hp: 80, at: 97, df: 90, sa: 95, sd: 97, sp: 75},
+    types: ['Grass', 'Dragon'],
+    bs: {hp: 80, at: 97, df: 90, sa: 95, sd: 97, sp: 75},
+    weightkg: 37.6,
 }, 
 
 'Amphamence': {
-types: ['Electric', 'Flying'],
- bs: {hp: 92, at: 105, df: 82, sa: 112, sd: 85, sp: 95},
+    types: ['Electric', 'Flying'],
+    bs: {hp: 92, at: 105, df: 82, sa: 112, sd: 85, sp: 95},
+    weightkg: 82.1,
 }, 
 
 'Amphamence-Mega-X': {
-types: ['Electric', 'Flying'],
- bs: {hp: 92, at: 115, df: 132, sa: 122, sd: 95, sp: 115},
+    types: ['Electric', 'Flying'],
+    bs: {hp: 92, at: 115, df: 132, sa: 122, sd: 95, sp: 115},
+    weightkg: 92.1,
 }, 
 
 'Amphamence-Mega-Y': {
-types: ['Electric', 'Dragon'],
- bs: {hp: 92, at: 125, df: 102, sa: 162, sd: 105, sp: 85},
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 92, at: 125, df: 102, sa: 162, sd: 105, sp: 85},
+    weightkg: 82.1,
 }, 
 
 'Bronze Bonnet': {
-types: ['Grass', 'Steel'],
- bs: {hp: 97, at: 111, df: 107, sa: 79, sd: 107, sp: 45},
+    types: ['Grass', 'Steel'],
+    bs: {hp: 97, at: 111, df: 107, sa: 79, sd: 107, sp: 45},
+    weightkg: 104,
 }, 
 
 'Iron Legion': {
-types: ['Water', 'Ghost'],
- bs: {hp: 88, at: 92, df: 90, sa: 112, sd: 68, sp: 110},
+    types: ['Water', 'Ghost'],
+    bs: {hp: 88, at: 92, df: 90, sa: 112, sd: 68, sp: 110},
+    weightkg: 60.5,
 }, 
 
 'Varantis': {
-types: ['Steel', 'Grass'],
- bs: {hp: 45, at: 62, df: 50, sa: 40, sd: 50, sp: 41},
+    types: ['Steel', 'Grass'],
+    bs: {hp: 45, at: 62, df: 50, sa: 40, sd: 50, sp: 41},
+    weightkg: 18.3,
 }, 
 
 'Dollava': {
-types: ['Grass', 'Fire'],
- bs: {hp: 70, at: 58, df: 59, sa: 79, sd: 76, sp: 56},
+    types: ['Grass', 'Fire'],
+    bs: {hp: 70, at: 58, df: 59, sa: 79, sd: 76, sp: 56},
+    weightkg: 15.5,
 }, 
 
 'Smoliqwil': {
-types: ['Grass', 'Fire'],
- bs: {hp: 55, at: 43, df: 44, sa: 59, sd: 55, sp: 47},
+    types: ['Grass', 'Fire'],
+    bs: {hp: 55, at: 43, df: 44, sa: 59, sd: 55, sp: 47},
+    weightkg: 7.2,
 }, 
 
 'Rhylet': {
-types: ['Ground', 'Flying'],
- bs: {hp: 75, at: 75, df: 75, sa: 40, sd: 40, sp: 40},
+    types: ['Ground', 'Flying'],
+    bs: {hp: 75, at: 75, df: 75, sa: 40, sd: 40, sp: 40},
+    weightkg: 58.3,
 }, 
 
 'Rhytrix': {
-types: ['Ground', 'Flying'],
- bs: {hp: 105, at: 105, df: 100, sa: 57, sd: 60, sp: 46},
+    types: ['Ground', 'Flying'],
+    bs: {hp: 105, at: 105, df: 100, sa: 57, sd: 60, sp: 46},
+    weightkg: 68,
 }, 
 
 'Grimeblu-Alola': {
-types: ['Poison', 'Normal'],
- bs: {hp: 65, at: 70, df: 60, sa: 40, sd: 64, sp: 37},
+    types: ['Poison', 'Normal'],
+    bs: {hp: 65, at: 70, df: 60, sa: 40, sd: 64, sp: 37},
+    weightkg: 21.6,
 }, 
 
 'Bramblinub': {
-types: ['Ice', 'Grass'],
- bs: {hp: 45, at: 57, df: 35, sa: 37, sd: 32, sp: 65},
+    types: ['Ice', 'Grass'],
+    bs: {hp: 45, at: 57, df: 35, sa: 37, sd: 32, sp: 65},
+    weightkg: 3.6,
 }, 
 
 'Stargela': {
-types: ['Grass', 'Water'],
- bs: {hp: 50, at: 50, df: 85, sa: 85, sd: 50, sp: 75},
+    types: ['Grass', 'Water'],
+    bs: {hp: 50, at: 50, df: 85, sa: 85, sd: 50, sp: 75},
+    weightkg: 34.8,
 }, 
 
 'Mareegon': {
-types: ['Electric', 'Dragon'],
- bs: {hp: 50, at: 61, df: 50, sa: 52, sd: 37, sp: 50},
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 50, at: 61, df: 50, sa: 52, sd: 37, sp: 50},
+    weightkg: 25,
 }, 
 
 'Flaalgon': {
-types: ['Electric', 'Dragon'],
- bs: {hp: 67, at: 85, df: 77, sa: 70, sd: 55, sp: 51},
+    types: ['Electric', 'Dragon'],
+    bs: {hp: 67, at: 85, df: 77, sa: 70, sd: 55, sp: 51},
+    weightkg: 61.9,
 }, 
 
 
-// FE Data End
+
+// FE Data Ends
 	
     Wugtrio: {
         types: ['Water'],
