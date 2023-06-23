@@ -327,7 +327,30 @@ const SV = SS.concat([
   'Zero to Hero',
 ]);
 
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV];
+const FESV = SV.concat([
+  'Necromancer',
+  'Unfiltered',
+  'Scrap Rock',
+  'Circuit Breaker',
+  'Once Upon a Time',
+  'Light Drive',
+  'Weight of Life',
+  'Squall',
+  'Grindset',
+  'Iron Sights',
+  'Primitive',
+  'Faulty Photon',
+  'System Purge',
+  'Forest Fury',
+  'Aura Shield',
+  'Dyschronometria',
+  'Galvanic Relay',
+  'Holy Grail',
+  'Quark Surge',
+  'Necromancer'
+]);
+
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, FESV];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;
