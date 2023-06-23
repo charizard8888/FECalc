@@ -319,6 +319,7 @@ function autosetTerrain(ability, i) {
 	switch (ability) {
 	case "Electric Surge":
 	case "Hadron Engine":
+	case "Quark Surge":
 		lastAutoTerrain[i] = "Electric";
 		$("#electric").prop("checked", true);
 		break;
@@ -709,10 +710,10 @@ $(".forme").change(function () {
 	} else if (greninjaSet) {
 		$(this).parent().find(".ability");
 	} else if (chosenSet) {
-		if (!isRandoms) {
-			container.find(".abilities").val(chosenSet.ability);
-		} else {
+		if (isRandoms) {
 			container.find(".ability").val(chosenSet.abilities[0]);
+		} else {
+			container.find(".abilities").val(chosenSet.ability);
 		}
 	}
 	container.find(".ability").keyup();
