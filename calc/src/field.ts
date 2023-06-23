@@ -11,10 +11,12 @@ export class Field implements State.Field {
   isAuraBreak?: boolean;
   isFairyAura?: boolean;
   isDarkAura?: boolean;
+  isAuraShield?: boolean;
   isBeadsOfRuin?: boolean;
   isSwordOfRuin?: boolean;
   isTabletsOfRuin?: boolean;
   isVesselOfRuin?: boolean;
+  isGrindset?: boolean;
   attackerSide: Side;
   defenderSide: Side;
 
@@ -28,10 +30,12 @@ export class Field implements State.Field {
     this.isAuraBreak = field.isAuraBreak || false;
     this.isFairyAura = field.isFairyAura || false;
     this.isDarkAura = field.isDarkAura || false;
+    this.isAuraShield = field.isAuraShield || false;
     this.isBeadsOfRuin = field.isBeadsOfRuin || false;
     this.isSwordOfRuin = field.isSwordOfRuin || false;
     this.isTabletsOfRuin = field.isTabletsOfRuin || false;
     this.isVesselOfRuin = field.isVesselOfRuin || false;
+    this.isGrindset = field.isGrindset || false;
 
     this.attackerSide = new Side(field.attackerSide || {});
     this.defenderSide = new Side(field.defenderSide || {});
@@ -63,10 +67,12 @@ export class Field implements State.Field {
       isAuraBreak: this.isAuraBreak,
       isDarkAura: this.isDarkAura,
       isFairyAura: this.isFairyAura,
+      isAuraShield: this.isAuraShield,
       isBeadsOfRuin: this.isBeadsOfRuin,
       isSwordOfRuin: this.isSwordOfRuin,
       isTabletsOfRuin: this.isTabletsOfRuin,
       isVesselOfRuin: this.isVesselOfRuin,
+      isGrindset: this.isGrindset,
     });
   }
 }
