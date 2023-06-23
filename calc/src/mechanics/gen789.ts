@@ -1154,11 +1154,15 @@ export function calculateAtModsSMSSSV(
   const atMods = [];
 
   // Slow Start also halves damage with special Z-moves
-  if ((attacker.hasAbility('Slow Start') && attacker.abilityOn &&
+  if ((attacker.hasAbility('Slow Start', 'Quickstart') && attacker.abilityOn &&
        (move.category === 'Physical' || move.isZ)) ||
       (attacker.hasAbility('Defeatist') && attacker.curHP() <= attacker.maxHP() / 2)
   ) {
-    atMods.push(2048);
+    if (attacker.hasAbility('Quickstart')) {
+      atMods.push(8192);
+    } else {
+      atMods.push(2048);
+    }
     desc.attackerAbility = attacker.ability;
   } else if (
     (attacker.hasAbility('Solar Power') &&
