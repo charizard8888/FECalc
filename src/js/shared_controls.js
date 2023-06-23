@@ -226,7 +226,7 @@ $(".ability").bind("keyup change", function () {
 
 	var ability = $(this).closest(".poke-info").find(".ability").val();
 
-	var TOGGLE_ABILITIES = ['Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Unburden', 'Stakeout'];
+	var TOGGLE_ABILITIES = ['Flash Fire', 'Intimidate', 'Minus', 'Plus', 'Slow Start', 'Unburden', 'Stakeout', 'Quickstart', 'Faulty Photon', 'System Purge'];
 
 	if (TOGGLE_ABILITIES.indexOf(ability) >= 0) {
 		$(this).closest(".poke-info").find(".abilityToggle").show();
@@ -235,7 +235,7 @@ $(".ability").bind("keyup change", function () {
 	}
 
 	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
-	if (['Protosynthesis', 'Quark Drive'].indexOf(ability) >= 0) {
+	if (['Protosynthesis', 'Quark Drive', 'Weight of Life', 'Quickstart', 'Light Drive', 'System Purge', 'Faulty Photon', 'Once Upon a Time', 'Primitive', 'Circuit Breaker', 'Quark Surge'].indexOf(ability) >= 0) {
 		boostedStat.show();
 	} else {
 		boostedStat.hide();
