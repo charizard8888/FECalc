@@ -365,12 +365,12 @@ export function calculateSMSSSV(
     return result;
   }
 
-  if (move.named('Final Gambit')) {
+  else if (move.named('Final Gambit')) {
     result.damage = attacker.curHP();
     return result;
   }
 
-  if (move.named('Guardian of Alola')) {
+  else if (move.named('Guardian of Alola')) {
     let zLostHP = Math.floor((defender.curHP() * 3) / 4);
     if (field.defenderSide.isProtected && attacker.item && attacker.item.includes(' Z')) {
       zLostHP = Math.ceil(zLostHP / 4 - 0.5);
@@ -379,13 +379,13 @@ export function calculateSMSSSV(
     return result;
   }
 
-  if (move.named('Nature\'s Madness')) {
+  else if (move.named('Nature\'s Madness')) {
     const lostHP = field.defenderSide.isProtected ? 0 : Math.floor(defender.curHP() / 2);
     result.damage = lostHP;
     return result;
   }
 
-  if (move.named('Spectral Thief')) {
+  else if (move.named('Spectral Thief')) {
     let stat: StatID;
     for (stat in defender.boosts) {
       if (defender.boosts[stat]) {
@@ -1223,8 +1223,8 @@ export function calculateAtModsSMSSSV(
 
   if ((defender.hasAbility('Thick Fat') && move.hasType('Fire', 'Ice')) ||
       (defender.hasAbility('Water Bubble') && move.hasType('Fire')) ||
-      (defender.hasAbility('Necromancer') && move.hasType('Steel')) ||
-     (defender.hasAbility('Purifying Salt', 'Necromancer') && move.hasType('Ghost'))) {
+      (defender.hasAbility('Necromancer') && move.hasType('Steel', 'Ghost')) ||
+     (defender.hasAbility('Purifying Salt') && move.hasType('Ghost'))) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
   }
