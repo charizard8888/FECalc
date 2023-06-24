@@ -348,7 +348,7 @@ const FESV = SV.concat([
   'Holy Grail',
   'Quark Surge',
   'Necromancer',
-  'Quickstart'
+  'Quickstart',
 ]);
 
 export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, FESV];

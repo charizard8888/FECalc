@@ -210,7 +210,8 @@ export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
 
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
-    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body', 'Scrap Rock', 'Primitive', 'Forest Fury') ||
+    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body',
+      'Scrap Rock', 'Primitive', 'Forest Fury') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     (gen.num >= 8 && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) ||
     target.hasItem('Clear Amulet');
@@ -255,7 +256,7 @@ export function checkDauntlessShield(source: Pokemon, gen: Generation) {
 }
 
 export function checkInfiltrator(pokemon: Pokemon, affectedSide: Side) {
-  if (pokemon.hasAbility('Infiltrator','Once Upon a Time')) {
+  if (pokemon.hasAbility('Infiltrator', 'Once Upon a Time')) {
     affectedSide.isReflect = false;
     affectedSide.isLightScreen = false;
     affectedSide.isAuroraVeil = false;
