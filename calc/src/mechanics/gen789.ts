@@ -110,7 +110,7 @@ export function calculateSMSSSV(
     'Shadow Shield'
   );
 
-  const attackerIgnoresAbility = attacker.hasAbility('Mold Breaker', 'Teravolt', 'Turboblaze');
+  const attackerIgnoresAbility = attacker.hasAbility('Mold Breaker', 'Teravolt', 'Turboblaze', 'Circuit Breaker', 'Galvanic Relay');
   const moveIgnoresAbility = move.named(
     'G-Max Drum Solo',
     'G-Max Fire Ball',
@@ -123,7 +123,8 @@ export function calculateSMSSSV(
     'Sunsteel Strike'
   );
   if (!defenderIgnoresAbility && !defender.hasAbility('Poison Heal') &&
-    (attackerIgnoresAbility || moveIgnoresAbility)) {
+    (attackerIgnoresAbility || moveIgnoresAbility) &&
+      (!attacker.hasAbility('Galvanic Relay') || move.type === 'Electric')) { //Galvanic Relay only has Mold Breaker effects with Electric/Status moves
     if (attackerIgnoresAbility) desc.attackerAbility = attacker.ability;
     if (defender.hasItem('Ability Shield')) {
       desc.defenderItem = defender.item;
@@ -183,7 +184,7 @@ export function calculateSMSSSV(
   } else if (move.named('Raging Bull')) {
     if (attacker.named('Tauros-Paldea-Combat')) {
       type = 'Fighting';
-    } else if (attacker.named('Tauros-Paldea-Blaze')) {
+    } else if (attacker.named('Tauros-Paldea-Blaze') || attacker.named('Golisoros-Paldea-Blaze')) {
       type = 'Fire';
     } else if (attacker.named('Tauros-Paldea-Aqua')) {
       type = 'Water';
@@ -247,7 +248,7 @@ export function calculateSMSSSV(
   }
 
   const isGhostRevealed =
-    attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
+    attacker.hasAbility('Scrappy', 'Scrap Rock') || field.defenderSide.isForesight;
   const isRingTarget =
     defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
   const type1Effectiveness = getMoveEffectiveness(
@@ -281,12 +282,8 @@ export function calculateSMSSSV(
     );
   }
 
-  if (typeEffectiveness === 0 && move.hasType('Ground') &&
-    defender.hasItem('Iron Ball') && !defender.hasAbility('Klutz')) {
-    typeEffectiveness = 1;
-  }
-
-  if (typeEffectiveness === 0 && move.named('Thousand Arrows')) {
+  if (typeEffectiveness === 0 && move.hasType('Ground') && (move.named('Thousand Arrows')
+    || (defender.hasItem('Iron Ball') && !defender.hasAbility('Klutz')))) {
     typeEffectiveness = 1;
   }
 
@@ -322,17 +319,17 @@ export function calculateSMSSSV(
 
   if ((defender.hasAbility('Wonder Guard') && typeEffectiveness <= 1) ||
       (move.hasType('Grass') && defender.hasAbility('Sap Sipper')) ||
-      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body')) ||
+      (move.hasType('Fire') && defender.hasAbility('Flash Fire', 'Well-Baked Body', 'Squall')) ||
+      (move.hasType('Ice') && defender.hasAbility('Squall')) ||
       (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
       (move.hasType('Electric') &&
         defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
-      (move.hasType('Ground') &&
-        !field.isGravity && !move.named('Thousand Arrows') &&
-        !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
+      (move.hasType('Ground') && (defender.hasAbility('Earth Eater') ||
+        (!field.isGravity && !move.named('Thousand Arrows') &&
+        !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate', 'Holy Grail')))) ||
       (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
       (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
       (move.priority > 0 && defender.hasAbility('Queenly Majesty', 'Dazzling', 'Armor Tail')) ||
-      (move.hasType('Ground') && defender.hasAbility('Earth Eater')) ||
       (move.flags.wind && defender.hasAbility('Wind Rider'))
   ) {
     desc.defenderAbility = defender.ability;
@@ -368,12 +365,12 @@ export function calculateSMSSSV(
     return result;
   }
 
-  if (move.named('Final Gambit')) {
+  else if (move.named('Final Gambit')) {
     result.damage = attacker.curHP();
     return result;
   }
 
-  if (move.named('Guardian of Alola')) {
+  else if (move.named('Guardian of Alola')) {
     let zLostHP = Math.floor((defender.curHP() * 3) / 4);
     if (field.defenderSide.isProtected && attacker.item && attacker.item.includes(' Z')) {
       zLostHP = Math.ceil(zLostHP / 4 - 0.5);
@@ -382,18 +379,18 @@ export function calculateSMSSSV(
     return result;
   }
 
-  if (move.named('Nature\'s Madness')) {
+  else if (move.named('Nature\'s Madness')) {
     const lostHP = field.defenderSide.isProtected ? 0 : Math.floor(defender.curHP() / 2);
     result.damage = lostHP;
     return result;
   }
 
-  if (move.named('Spectral Thief')) {
+  else if (move.named('Spectral Thief')) {
     let stat: StatID;
     for (stat in defender.boosts) {
       if (defender.boosts[stat]) {
         attacker.boosts[stat] +=
-          attacker.hasAbility('Contrary') ? -defender.boosts[stat]! : defender.boosts[stat]!;
+          attacker.hasAbility('Contrary', 'Unfiltered') ? -defender.boosts[stat]! : defender.boosts[stat]!;
         if (attacker.boosts[stat] > 6) attacker.boosts[stat] = 6;
         if (attacker.boosts[stat] < -6) attacker.boosts[stat] = -6;
         attacker.stats[stat] = getModifiedStat(attacker.rawStats[stat]!, attacker.boosts[stat]!);
@@ -585,7 +582,7 @@ export function calculateSMSSSV(
         return affectedAmount;
       });
 
-      if (attacker.hasAbility('Contrary')) {
+      if (attacker.hasAbility('Contrary','Unfiltered')) {
         dropCount = Math.min(6, dropCount + move.dropsStats);
         desc.attackerAbility = attacker.ability;
       } else {
@@ -900,7 +897,7 @@ export function calculateBPModsSMSSSV(
     desc.weather = field.weather;
   } else if (move.named('Collision Course', 'Electro Drift')) {
     const isGhostRevealed =
-      attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
+      attacker.hasAbility('Scrappy', 'Scrap Rock') || field.defenderSide.isForesight;
     const isRingTarget =
       defender.hasItem('Ring Target') && !defender.hasAbility('Klutz');
     const types = defender.teraType ? [defender.teraType] : defender.types;
@@ -976,7 +973,8 @@ export function calculateBPModsSMSSSV(
   const isFieldAuraBreak = field.isAuraBreak;
   const isFieldFairyAura = field.isFairyAura && move.type === 'Fairy';
   const isFieldDarkAura = field.isDarkAura && move.type === 'Dark';
-  const auraActive = isAttackerAura || isDefenderAura || isFieldFairyAura || isFieldDarkAura;
+  const isFieldAuraShield = field.isAuraShield && move.secondaries;
+  const auraActive = isAttackerAura || isDefenderAura || isFieldFairyAura || isFieldDarkAura || isFieldAuraShield;
   const auraBreak = isFieldAuraBreak || isUserAuraBreak;
   if (auraActive) {
     if (auraBreak) {
@@ -1136,7 +1134,7 @@ export function calculateAttackSMSSSV(
   }
 
   // unlike all other attack modifiers, Hustle gets applied directly
-  if (attacker.hasAbility('Hustle') && move.category === 'Physical') {
+  if ((attacker.hasAbility('Grindset','Hustle')) && move.category === 'Physical') {
     attack = pokeRound((attack * 3) / 2);
     desc.attackerAbility = attacker.ability;
   }
@@ -1156,11 +1154,15 @@ export function calculateAtModsSMSSSV(
   const atMods = [];
 
   // Slow Start also halves damage with special Z-moves
-  if ((attacker.hasAbility('Slow Start') && attacker.abilityOn &&
-       (move.category === 'Physical' || (move.category === 'Special' && move.isZ))) ||
+  if ((attacker.hasAbility('Slow Start', 'Quickstart') && attacker.abilityOn &&
+       (move.category === 'Physical' || move.isZ)) ||
       (attacker.hasAbility('Defeatist') && attacker.curHP() <= attacker.maxHP() / 2)
   ) {
-    atMods.push(2048);
+    if (attacker.hasAbility('Quickstart')) {
+      atMods.push(8192);
+    } else {
+      atMods.push(2048);
+    }
     desc.attackerAbility = attacker.ability;
   } else if (
     (attacker.hasAbility('Solar Power') &&
@@ -1199,12 +1201,13 @@ export function calculateAtModsSMSSSV(
     desc.attackerAbility = 'Flash Fire';
   } else if (
     (attacker.hasAbility('Steelworker') && move.hasType('Steel')) ||
+    (attacker.hasAbility('Necromancer') && move.hasType('Ghost')) ||
     (attacker.hasAbility('Dragon\'s Maw') && move.hasType('Dragon')) ||
     (attacker.hasAbility('Rocky Payload') && move.hasType('Rock'))
   ) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Transistor') && move.hasType('Electric')) {
+  } else if (attacker.hasAbility('Transistor', 'Galvanic Relay') && move.hasType('Electric')) {
     atMods.push(gen.num >= 9 ? 5325 : 6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Stakeout') && attacker.abilityOn) {
@@ -1220,6 +1223,7 @@ export function calculateAtModsSMSSSV(
 
   if ((defender.hasAbility('Thick Fat') && move.hasType('Fire', 'Ice')) ||
       (defender.hasAbility('Water Bubble') && move.hasType('Fire')) ||
+      (defender.hasAbility('Necromancer') && move.hasType('Steel', 'Ghost')) ||
      (defender.hasAbility('Purifying Salt') && move.hasType('Ghost'))) {
     atMods.push(2048);
     desc.defenderAbility = defender.ability;
@@ -1231,20 +1235,32 @@ export function calculateAtModsSMSSSV(
     (isTabletsOfRuinActive && move.category === 'Physical') ||
     (isVesselOfRuinActive && move.category === 'Special')
   ) {
-    if (defender.hasAbility('Tablets of Ruin') || defender.hasAbility('Vessel of Ruin')) {
+    if (defender.hasAbility('Tablets of Ruin','Vessel of Ruin')) {
       desc.defenderAbility = defender.ability;
     } else {
       desc[move.category === 'Special' ? 'isVesselOfRuin' : 'isTabletsOfRuin'] = true;
     }
     atMods.push(3072);
   }
-
-  if (
-    (attacker.hasAbility('Protosynthesis') &&
+  const isGrindsetActive = defender.hasAbility('Grindset') || field.Grindset;
+  if (isGrindsetActive && move.category === 'Physical') {
+    if (defender.hasAbility('Grindset')) {
+      desc.defenderAbility = defender.ability;
+    } else {
+      desc['isGrindset'] = true;
+    }
+    atMods.push(2048);
+  }
+  if ((
+    (attacker.hasAbility('Protosynthesis', 'Weight of Life', 'Once Upon a Time','Primitive') &&
       (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
-    (attacker.hasAbility('Quark Drive') &&
-      (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy')))
-  ) {
+    (attacker.hasAbility('Quark Drive', 'Light Drive', 'Circuit Breaker') &&
+      (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy'))) ||
+    (attacker.hasAbility('System Purge') && (attacker.abilityOn || attacker.hasItem('Booster Energy'))) ||
+    (attacker.hasAbility('Faulty Photon') && attacker.abilityOn) ||
+    (attacker.hasAbility('Weight of Life') && (attacker.weightkg * getWeightFactor(attacker)) > (defender.weightkg * getWeightFactor(defender)))  ||
+    (attacker.hasAbility('Light Drive') && (attacker.weightkg * getWeightFactor(attacker)) < (defender.weightkg * getWeightFactor(defender))) 
+  ) && !defender.hasAbility('Dyschronometria')) {
     if (
       (move.category === 'Physical' &&
         getQPBoostedStat(attacker) === 'atk') ||
@@ -1254,8 +1270,8 @@ export function calculateAtModsSMSSSV(
       desc.attackerAbility = attacker.ability;
     }
   }
-
-  if (
+  
+  else if ( attacker.hasAbility('Iron Sights') || //Deliraidon
     (attacker.hasAbility('Hadron Engine') && move.category === 'Special' &&
       field.hasTerrain('Electric') && isGrounded(attacker, field)) ||
     (attacker.hasAbility('Orichalcum Pulse') && move.category === 'Physical' &&
@@ -1304,7 +1320,7 @@ export function calculateDefenseSMSSSV(
       (isCritical && defender.boosts[defenseStat] > 0) ||
       move.ignoreDefensive) {
     defense = defender.rawStats[defenseStat];
-  } else if (attacker.hasAbility('Unaware')) {
+  } else if (attacker.hasAbility('Unaware', 'Dyschronometria')) {
     defense = defender.rawStats[defenseStat];
     desc.attackerAbility = attacker.ability;
   } else {
@@ -1384,7 +1400,7 @@ export function calculateDfModsSMSSSV(
     (isSwordOfRuinActive && hitsPhysical) ||
     (isBeadsOfRuinActive && !hitsPhysical)
   ) {
-    if (attacker.hasAbility('Sword of Ruin') || attacker.hasAbility('Beads of Ruin')) {
+    if (attacker.hasAbility('Sword of Ruin','Beads of Ruin')) {
       desc.attackerAbility = attacker.ability;
     } else {
       desc[hitsPhysical ? 'isSwordOfRuin' : 'isBeadsOfRuin'] = true;
@@ -1392,12 +1408,16 @@ export function calculateDfModsSMSSSV(
     dfMods.push(3072);
   }
 
-  if (
-    (defender.hasAbility('Protosynthesis') &&
-    (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
-    (defender.hasAbility('Quark Drive') &&
-    (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy')))
-  ) {
+  if ((
+    (defender.hasAbility('Protosynthesis','Weight of Life', 'Once Upon a Time','Primitive') &&
+    (field.hasWeather('Sun') || defender.hasItem('Booster Energy'))) ||
+    (defender.hasAbility('Quark Drive','Light Drive', 'Circuit Breaker') &&
+    (field.hasTerrain('Electric') || defender.hasItem('Booster Energy'))) ||
+    (defender.hasAbility('System Purge') && (defender.abilityOn || defender.hasItem('Booster Energy')))||
+    (defender.hasAbility('Faulty Photon') && defender.abilityOn) ||
+    (defender.hasAbility('Weight of Life') && (defender.weightkg * getWeightFactor(attacker)) > (attacker.weightkg * getWeightFactor(defender)))  ||
+    (defender.hasAbility('Light Drive') && (defender.weightkg * getWeightFactor(attacker)) < (attacker.weightkg * getWeightFactor(defender))) 
+  ) && !attacker.hasAbility('Dyschronometria')) {
     if (
       (hitsPhysical && getQPBoostedStat(defender) === 'def') ||
       (!hitsPhysical && getQPBoostedStat(defender) === 'spd')
@@ -1433,22 +1453,20 @@ export function calculateFinalModsSMSSSV(
 ) {
   const finalMods = [];
 
-  if (field.defenderSide.isReflect && move.category === 'Physical' &&
-      !isCritical && !field.defenderSide.isAuroraVeil) {
-    // doesn't stack with Aurora Veil
-    finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
-    desc.isReflect = true;
-  } else if (
-    field.defenderSide.isLightScreen && move.category === 'Special' &&
-    !isCritical && !field.defenderSide.isAuroraVeil
-  ) {
-    // doesn't stack with Aurora Veil
-    finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
-    desc.isLightScreen = true;
-  }
-  if (field.defenderSide.isAuroraVeil && !isCritical) {
-    finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
-    desc.isAuroraVeil = true;
+  if (!isCritical) {
+    if (field.defenderSide.isAuroraVeil) {
+      finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
+      desc.isAuroraVeil = true;
+    }
+    else if (field.defenderSide.isReflect && move.category === 'Physical') {
+      // doesn't stack with Aurora Veil
+      finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
+      desc.isReflect = true;
+    } else if (field.defenderSide.isLightScreen && move.category === 'Special') {
+      // doesn't stack with Aurora Veil
+      finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
+      desc.isLightScreen = true;
+    }
   }
 
   if (attacker.hasAbility('Neuroforce') && typeEffectiveness > 1) {
@@ -1486,7 +1504,7 @@ export function calculateFinalModsSMSSSV(
     desc.defenderAbility = defender.ability;
   }
 
-  if (defender.hasAbility('Solid Rock', 'Filter', 'Prism Armor') && typeEffectiveness > 1) {
+  else if (defender.hasAbility('Solid Rock', 'Filter', 'Prism Armor', 'Scrap Rock', 'Unfiltered') && typeEffectiveness > 1) {
     finalMods.push(3072);
     desc.defenderAbility = defender.ability;
   }

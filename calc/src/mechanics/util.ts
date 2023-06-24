@@ -99,7 +99,7 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
   // Pledge swamp would get applied here when implemented
   // speedMods.push(1024);
 
-  if ((pokemon.hasAbility('Unburden') && pokemon.abilityOn) ||
+  if ((pokemon.hasAbility('Unburden', 'Quickstart') && pokemon.abilityOn) ||
       (pokemon.hasAbility('Chlorophyll') && weather.includes('Sun')) ||
       (pokemon.hasAbility('Sand Rush') && weather === 'Sand') ||
       (pokemon.hasAbility('Swift Swim') && weather.includes('Rain')) ||
@@ -113,10 +113,14 @@ export function getFinalSpeed(gen: Generation, pokemon: Pokemon, field: Field, s
     speedMods.push(2048);
   } else if (
     getQPBoostedStat(pokemon, gen) === 'spe' &&
-    ((pokemon.hasAbility('Protosynthesis') &&
+    ((pokemon.hasAbility('Protosynthesis', 'Weight of Life', 'Once Upon a Time', 'Primitive') &&
       (weather.includes('Sun') || pokemon.hasItem('Booster Energy'))) ||
-      (pokemon.hasAbility('Quark Drive') &&
-        (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))))
+      (pokemon.hasAbility('Quark Drive', 'Quark Surge', 'Circuit Breaker', 'Light Drive') &&
+        (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))) ||
+      (pokemon.hasAbility('System Purge') &&
+        (pokemon.abilityOn || pokemon.hasItem('Booster Energy'))) ||
+      (pokemon.hasAbility('Faulty Photon') && pokemon.abilityOn)
+    )
   ) {
     speedMods.push(6144);
   }
@@ -206,20 +210,20 @@ export function checkWonderRoom(pokemon: Pokemon, wonderRoomActive?: boolean) {
 
 export function checkIntimidate(gen: Generation, source: Pokemon, target: Pokemon) {
   const blocked =
-    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body') ||
+    target.hasAbility('Clear Body', 'White Smoke', 'Hyper Cutter', 'Full Metal Body', 'Scrap Rock', 'Primitive', 'Forest Fury') ||
     // More abilities now block Intimidate in Gen 8+ (DaWoblefet, Cloudy Mistral)
     (gen.num >= 8 && target.hasAbility('Inner Focus', 'Own Tempo', 'Oblivious', 'Scrappy')) ||
     target.hasItem('Clear Amulet');
-  if (source.hasAbility('Intimidate') && source.abilityOn && !blocked) {
-    if (target.hasAbility('Contrary', 'Defiant', 'Guard Dog')) {
+  if (!blocked && source.hasAbility('Intimidate', 'Forest Fury') && source.abilityOn) {
+    if (target.hasAbility('Contrary', 'Unfiltered', 'Defiant', 'Guard Dog')) {
       target.boosts.atk = Math.min(6, target.boosts.atk + 1);
     } else if (target.hasAbility('Simple')) {
       target.boosts.atk = Math.max(-6, target.boosts.atk - 2);
     } else {
       target.boosts.atk = Math.max(-6, target.boosts.atk - 1);
-    }
-    if (target.hasAbility('Competitive')) {
-      target.boosts.spa = Math.min(6, target.boosts.spa + 2);
+      if (target.hasAbility('Competitive')) {
+        target.boosts.spa = Math.min(6, target.boosts.spa + 2);
+      }
     }
   }
 }
@@ -251,7 +255,7 @@ export function checkDauntlessShield(source: Pokemon, gen: Generation) {
 }
 
 export function checkInfiltrator(pokemon: Pokemon, affectedSide: Side) {
-  if (pokemon.hasAbility('Infiltrator')) {
+  if (pokemon.hasAbility('Infiltrator','Once Upon a Time')) {
     affectedSide.isReflect = false;
     affectedSide.isLightScreen = false;
     affectedSide.isAuroraVeil = false;
@@ -264,11 +268,11 @@ export function checkSeedBoost(pokemon: Pokemon, field: Field) {
     const terrainSeed = pokemon.item.substring(0, pokemon.item.indexOf(' ')) as Terrain;
     if (field.hasTerrain(terrainSeed)) {
       if (terrainSeed === 'Grassy' || terrainSeed === 'Electric') {
-        pokemon.boosts.def = pokemon.hasAbility('Contrary')
+        pokemon.boosts.def = pokemon.hasAbility('Contrary', 'Unfiltered')
           ? Math.max(-6, pokemon.boosts.def - 1)
           : Math.min(6, pokemon.boosts.def + 1);
       } else {
-        pokemon.boosts.spd = pokemon.hasAbility('Contrary')
+        pokemon.boosts.spd = pokemon.hasAbility('Contrary', 'Unfiltered')
           ? Math.max(-6, pokemon.boosts.spd - 1)
           : Math.min(6, pokemon.boosts.spd + 1);
       }
@@ -306,7 +310,7 @@ export function checkMultihitBoost(
   }
 
   if (defender.hasAbility('Stamina')) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Dyschronometria')) {
       desc.attackerAbility = attacker.ability;
     } else {
       defender.boosts.def = Math.min(defender.boosts.def + 1, 6);
@@ -314,7 +318,7 @@ export function checkMultihitBoost(
       desc.defenderAbility = defender.ability;
     }
   } else if (defender.hasAbility('Weak Armor')) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Dyschronometria')) {
       desc.attackerAbility = attacker.ability;
     } else {
       if (defender.hasItem('White Herb') && !usedWhiteHerb) {
@@ -332,7 +336,7 @@ export function checkMultihitBoost(
 
   const simple = attacker.hasAbility('Simple') ? 2 : 1;
   if (move.dropsStats) {
-    if (attacker.hasAbility('Unaware')) {
+    if (attacker.hasAbility('Unaware', 'Dyschronometria')) {
       desc.attackerAbility = attacker.ability;
     } else {
       // No move with dropsStats has fancy logic regarding category here
@@ -451,8 +455,8 @@ export function getShellSideArmCategory(source: Pokemon, target: Pokemon): MoveC
 }
 
 export function getWeightFactor(pokemon: Pokemon) {
-  return pokemon.hasAbility('Heavy Metal') ? 2
-    : (pokemon.hasAbility('Light Metal') || pokemon.hasItem('Float Stone')) ? 0.5 : 1;
+  return (pokemon.hasItem('Float Stone') ? 0.5 : 1) * (pokemon.hasAbility('Heavy Metal',
+    'Weight of Life') ? 2 : pokemon.hasAbility('Light Metal', 'Light Drive') ? 0.5 : 1);
 }
 
 export function countBoosts(gen: Generation, boosts: StatsTable) {
