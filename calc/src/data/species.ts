@@ -9973,7 +9973,6 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 	},
 	Yveltox: {
  // fusion: ['Yveltal', 'Dustox'],
-		num: 23,
 		name: "Yveltox",
 		types: ["Flying", "Poison"],
 		bs: {hp: 93, at: 90, df: 87, sa: 90, sd: 94, sp: 91},
@@ -10042,7 +10041,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 	Wopple: {
  // fusion: ['Flapple', 'Wo-Chien'],
 		types: ["Grass", "Dragon"],
-		baseStats: {hp: 80, at: 97, df: 90, sa: 95, sd: 97, sp: 75},
+		bs: {hp: 80, at: 97, df: 90, sa: 95, sd: 97, sp: 75},
 		abilities: {0: "Grindset"},
 		weightkg: 37.6,
 	},
@@ -10083,7 +10082,6 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 		bs: {hp: 88, at: 92, df: 90, sa: 112, sd: 68, sp: 110}, 
 		abilities: {0: "Circuit Breaker"},
 		weightkg: 60.5,
-		tags: ["Paradox"],
 	},
 	
 // LCs and NFEs
