@@ -1413,7 +1413,8 @@ export function calculateDfModsSMSSSV(
     (field.hasWeather('Sun') || defender.hasItem('Booster Energy'))) ||
     (defender.hasAbility('Quark Drive', 'Light Drive', 'Circuit Breaker') &&
     (field.hasTerrain('Electric') || defender.hasItem('Booster Energy'))) ||
-    (defender.hasAbility('System Purge') && (defender.abilityOn || defender.hasItem('Booster Energy'))) ||
+    (defender.hasAbility('System Purge') && (defender.abilityOn ||
+      defender.hasItem('Booster Energy'))) ||
     (defender.hasAbility('Faulty Photon') && defender.abilityOn) ||
     (defender.hasAbility('Weight of Life') && (defender.weightkg * getWeightFactor(attacker)) >
       (attacker.weightkg * getWeightFactor(defender))) ||
@@ -1428,7 +1429,7 @@ export function calculateDfModsSMSSSV(
       dfMods.push(5324);
     }
   }
-  
+
   if ((defender.hasItem('Eviolite') && gen.species.get(toID(defender.name))?.nfe) ||
       (!hitsPhysical && defender.hasItem('Assault Vest'))) {
     dfMods.push(6144);
