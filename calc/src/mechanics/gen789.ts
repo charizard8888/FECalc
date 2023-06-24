@@ -1255,12 +1255,13 @@ export function calculateAtModsSMSSSV(
       (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
     (attacker.hasAbility('Quark Drive', 'Light Drive', 'Circuit Breaker') &&
       (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy'))) ||
-    (attacker.hasAbility('System Purge') && (attacker.abilityOn || attacker.hasItem('Booster Energy'))) ||
+    (attacker.hasAbility('System Purge') && (attacker.abilityOn ||
+      attacker.hasItem('Booster Energy'))) ||
     (attacker.hasAbility('Faulty Photon') && attacker.abilityOn) ||
-    (attacker.hasAbility('Weight of Life') && (attacker.weightkg * getWeightFactor(attacker))
-       > (defender.weightkg * getWeightFactor(defender))) ||
-    (attacker.hasAbility('Light Drive') && (attacker.weightkg * getWeightFactor(attacker))
-      < (defender.weightkg * getWeightFactor(defender)))
+    (attacker.hasAbility('Weight of Life') && (attacker.weightkg * getWeightFactor(attacker)) >
+       (defender.weightkg * getWeightFactor(defender))) ||
+    (attacker.hasAbility('Light Drive') && (attacker.weightkg * getWeightFactor(attacker)) <
+      (defender.weightkg * getWeightFactor(defender)))
   ) && !defender.hasAbility('Dyschronometria')) {
     if (
       (move.category === 'Physical' &&
@@ -1270,9 +1271,7 @@ export function calculateAtModsSMSSSV(
       atMods.push(5325);
       desc.attackerAbility = attacker.ability;
     }
-  }
-  
-  else if (attacker.hasAbility('Iron Sights') ||
+  } else if (attacker.hasAbility('Iron Sights') ||
     (attacker.hasAbility('Hadron Engine') && move.category === 'Special' &&
       field.hasTerrain('Electric') && isGrounded(attacker, field)) ||
     (attacker.hasAbility('Orichalcum Pulse') && move.category === 'Physical' &&
@@ -1414,12 +1413,12 @@ export function calculateDfModsSMSSSV(
     (field.hasWeather('Sun') || defender.hasItem('Booster Energy'))) ||
     (defender.hasAbility('Quark Drive', 'Light Drive', 'Circuit Breaker') &&
     (field.hasTerrain('Electric') || defender.hasItem('Booster Energy'))) ||
-    (defender.hasAbility('System Purge') && (defender.abilityOn || defender.hasItem('Booster Energy')))||
+    (defender.hasAbility('System Purge') && (defender.abilityOn || defender.hasItem('Booster Energy'))) ||
     (defender.hasAbility('Faulty Photon') && defender.abilityOn) ||
-    (defender.hasAbility('Weight of Life') && (defender.weightkg * getWeightFactor(attacker))
-      > (attacker.weightkg * getWeightFactor(defender))) ||
-    (defender.hasAbility('Light Drive') && (defender.weightkg * getWeightFactor(attacker))
-      < (attacker.weightkg * getWeightFactor(defender))) 
+    (defender.hasAbility('Weight of Life') && (defender.weightkg * getWeightFactor(attacker)) >
+      (attacker.weightkg * getWeightFactor(defender))) ||
+    (defender.hasAbility('Light Drive') && (defender.weightkg * getWeightFactor(attacker)) <
+      (attacker.weightkg * getWeightFactor(defender)))
   ) && !attacker.hasAbility('Dyschronometria')) {
     if (
       (hitsPhysical && getQPBoostedStat(defender) === 'def') ||
@@ -1429,7 +1428,7 @@ export function calculateDfModsSMSSSV(
       dfMods.push(5324);
     }
   }
-
+  
   if ((defender.hasItem('Eviolite') && gen.species.get(toID(defender.name))?.nfe) ||
       (!hitsPhysical && defender.hasItem('Assault Vest'))) {
     dfMods.push(6144);
@@ -1460,8 +1459,7 @@ export function calculateFinalModsSMSSSV(
     if (field.defenderSide.isAuroraVeil) {
       finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
       desc.isAuroraVeil = true;
-    }
-    else if (field.defenderSide.isReflect && move.category === 'Physical') {
+    } else if (field.defenderSide.isReflect && move.category === 'Physical') {
       // doesn't stack with Aurora Veil
       finalMods.push(field.gameType !== 'Singles' ? 2732 : 2048);
       desc.isReflect = true;
@@ -1494,7 +1492,8 @@ export function calculateFinalModsSMSSSV(
   ) {
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;
-  } else if (defender.hasAbility('Fluffy') && move.flags.contact && !attacker.hasAbility('Long Reach')) {
+  } else if (defender.hasAbility('Fluffy') && move.flags.contact &&
+             !attacker.hasAbility('Long Reach')) {
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;
   } else if (
@@ -1504,7 +1503,7 @@ export function calculateFinalModsSMSSSV(
     finalMods.push(2048);
     desc.defenderAbility = defender.ability;
   } else if (defender.hasAbility('Solid Rock', 'Filter',
-                                 'Prism Armor', 'Scrap Rock', 'Unfiltered') && typeEffectiveness > 1) {
+    'Prism Armor', 'Scrap Rock', 'Unfiltered') && typeEffectiveness > 1) {
     finalMods.push(3072);
     desc.defenderAbility = defender.ability;
   }
