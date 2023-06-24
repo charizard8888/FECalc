@@ -1242,7 +1242,7 @@ export function calculateAtModsSMSSSV(
     }
     atMods.push(3072);
   }
-  const isGrindsetActive = defender.hasAbility('Grindset') || field.Grindset;
+  const isGrindsetActive = defender.hasAbility('Grindset') || field.isGrindset;
   if (isGrindsetActive && move.category === 'Physical') {
     if (defender.hasAbility('Grindset')) {
       desc.defenderAbility = defender.ability;
