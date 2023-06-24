@@ -114,7 +114,7 @@ export function calculateSMSSSV(
     'Mold Breaker',
     'Teravolt',
     'Turboblaze',
-    'Circuit Breaker'
+    'Circuit Breaker',
     'Galvanic Relay'
   );
   const moveIgnoresAbility = move.named(
