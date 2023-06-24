@@ -9778,7 +9778,6 @@ const SV_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 };
 
 const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
-  
   Revarantis: {
     types: ['Steel', 'Grass'],
     bs: {hp: 75, at: 122, df: 90, sa: 75, sd: 80, sp: 67},
@@ -9827,7 +9826,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     bs: {hp: 90, at: 120, df: 130, sa: 120, sd: 110, sp: 130},
     abilities: {0: 'Tough Claws'},
     weightkg: 723.4,
-    baseSpecies: "Iron Meta",
+    baseSpecies: 'Iron Meta',
     gender: 'N',
   },
   'Deciperior-Hisui': {
@@ -9866,7 +9865,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     bs: {hp: 90, at: 135, df: 105, sa: 110, sd: 105, sp: 65},
     abilities: {0: 'Pixilate'},
     weightkg: 36.3,
-    baseSpecies: "Muktaria-Alola",
+    baseSpecies: 'Muktaria-Alola',
   },
   'Iron Pins': {
     types: ['Electric', 'Psychic'],
@@ -9893,7 +9892,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     bs: {hp: 70, at: 150, df: 80, sa: 140, sd: 60, sp: 140},
     abilities: {0: 'Magic Bounce'},
     weightkg: 43,
-    baseSpecies: "Sol Valiant",
+    baseSpecies: 'Sol Valiant',
   },
   'Golisoros-Paldea-Blaze': {
     types: ['Water', 'Fighting'],
@@ -9943,7 +9942,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     bs: {hp: 81, at: 140, df: 134, sa: 95, sd: 117, sp: 43},
     abilities: {0: 'Sand Force'},
     weightkg: 48.1,
-    baseSpecies: "Garpyuku",
+    baseSpecies: 'Garpyuku',
   },
   Yveltox: {
     types: ['Flying', 'Poison'],
@@ -9996,7 +9995,6 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     otherFormes: ['Crygargonal-Mega'],
   },
   'Crygargonal-Mega': {
- // fusion: ['Cryogonal', 'Gengar'],
     types: ['Poison', 'Ice'],
     bs: {hp: 80, at: 57, df: 75, sa: 162, sd: 125, sp: 127},
     abilities: {0: 'Shadow Tag'},
@@ -10004,7 +10002,6 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     baseSpecies: 'Crygargonal',
   },
   Wopple: {
- // fusion: ['Flapple', 'Wo-Chien'],
     types: ['Grass', 'Dragon'],
     bs: {hp: 80, at: 97, df: 90, sa: 95, sd: 97, sp: 75},
     abilities: {0: 'Grindset'},
@@ -10021,14 +10018,14 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     bs: {hp: 92, at: 115, df: 132, sa: 122, sd: 95, sp: 115},
     abilities: {0: 'Aerilate'},
     weightkg: 92.1,
-    baseSpecies: "Amphamence",
+    baseSpecies: 'Amphamence',
   },
   'Amphamence-Mega-Y': {
     types: ['Electric', 'Dragon'],
     bs: {hp: 92, at: 125, df: 102, sa: 162, sd: 105, sp: 85},
     abilities: {0: 'Mold Breaker'},
     weightkg: 82.1,
-    baseSpecies: "Amphamence",
+    baseSpecies: 'Amphamence',
   },
   'Bronze Bonnet': {
     types: ['Grass', 'Steel'],
