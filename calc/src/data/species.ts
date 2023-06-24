@@ -9973,7 +9973,6 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 	},
 	Yveltox: {
  // fusion: ['Yveltal', 'Dustox'],
-		name: "Yveltox",
 		types: ["Flying", "Poison"],
 		bs: {hp: 93, at: 90, df: 87, sa: 90, sd: 94, sp: 91},
 		abilities: {0: "Aura Shield"},
