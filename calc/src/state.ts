@@ -46,6 +46,8 @@ export namespace State {
     isAuraBreak?: boolean;
     isFairyAura?: boolean;
     isDarkAura?: boolean;
+    isAuraShield?: boolean;
+    isGrindset?: boolean;
     isBeadsOfRuin?: boolean;
     isSwordOfRuin?: boolean;
     isTabletsOfRuin?: boolean;
