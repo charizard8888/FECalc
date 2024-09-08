@@ -10110,7 +10110,7 @@ const SVFE_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     weightkg: 61.9,
     nfe: true,
   },
-  'Cosmonkey': {
+  Cosmonkey: {
     types: ['Fighting', 'Psychic'],
     bs: {hp: 41, at: 59, df: 37, sa: 37, sd: 41, sp: 53},
     weightkg: 14.1,
